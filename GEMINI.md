@@ -7,14 +7,15 @@
 ## 專案概覽
 
 個人 Claude Code / Cursor / Gemini CLI Skills 庫。  
-透過 `npx skills add Nigel-wei-zhe/skills` 安裝至任意專案。
+透過 `npx skills add https://github.com/Nigel-wei-zhe/skills` 安裝至任意專案。
 
 ## 目錄結構
 
 ```
 skills/
 ├── AGENTS.md / CLAUDE.md / GEMINI.md   ← 本檔（三份內容同步）
-├── README.md                            ← 對外說明，含 Skills 列表
+├── skills.json                          ← Skills 登錄表（主要維護對象）
+├── README.md                            ← 對外說明
 └── skills/
     ├── curated/       精選、穩定
     ├── experimental/  實驗性
@@ -30,44 +31,6 @@ skills/dev/my-skill/
 └── SKILL.md
 ```
 
-## SKILL.md 撰寫原則：Progressive Disclosure
-
-以「由淺入深、按需展開」四層結構撰寫，避免一次揭露所有細節：
-
-```markdown
----
-name: skill-name
-description: 一句話觸發條件 — 何時使用、解決什麼問題
----
-
-<!-- Layer 1 · 摘要（必讀，≤3 行） -->
-## TL;DR
-最常見用法的一行指令或步驟。
-
-<!-- Layer 2 · 標準流程（多數情境適用） -->
-## 使用方式
-基本步驟，涵蓋 80% 場景。
-
-<!-- Layer 3 · 進階選項（需要時再看） -->
-## 進階
-
-<details>
-<summary>選項 / 參數</summary>
-
-詳細參數說明。
-
-</details>
-
-<!-- Layer 4 · 邊界條件（僅特殊情況需要） -->
-## 注意事項
-已知限制、常見錯誤、回退方案。
-```
-
-**原則摘要：**
-- `description` 必須讓模型能自動判斷觸發時機
-- TL;DR 讓人 10 秒內上手
-- 進階內容用 `<details>` 折疊，不干擾主流程
-- 每層獨立可讀，不依賴上一層的細節
 
 ## 維護規範
 

@@ -2,7 +2,7 @@
 
 > **Sync rule**: AGENTS.md · CLAUDE.md · GEMINI.md 內容永遠保持一致。  
 > 任何異動這三個檔案時，必須同步更新其餘兩個。  
-> 任何新增或修改 SKILL.md 時，必須同步更新 README.md 的 Skills 列表。
+> 任何新增或修改 SKILL.md 時，必須同步更新 `skills.json`。
 
 ## 專案概覽
 
@@ -73,7 +73,7 @@ description: 一句話觸發條件 — 何時使用、解決什麼問題
 
 ### 新增 skill
 1. 在對應類別目錄建立資料夾與 `SKILL.md`
-2. 更新 `README.md` 的 Skills 列表表格
+2. 在 `skills.json` 的 `skills` 陣列新增一筆 `{ name, description, category, path }`
 
 ### 異動 agent 說明檔
 修改本檔後，立即同步 AGENTS.md 與 GEMINI.md（內容完全一致）。

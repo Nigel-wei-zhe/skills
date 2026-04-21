@@ -6,17 +6,15 @@
 
 ```bash
 # 安裝此 repo 所有 skills
-npx skills add Nigel-wei-zhe/skills
+npx skills add https://github.com/Nigel-wei-zhe/skills
 
 # 安裝單一 skill（依資料夾路徑）
-npx skills add Nigel-wei-zhe/skills/dev/skill-name
+npx skills add https://github.com/Nigel-wei-zhe/skills/tree/main/skills/<category>/<skill-name>
 ```
 
 ## Skills 列表
 
-| Skill | 說明 | 類別 |
-|-------|------|------|
-| [feynman-blog](skills/content/feynman-blog/SKILL.md) | 給一個網址、名詞或主題，以費曼學習法撰寫深入淺出的 blog 文章 | `content` |
+完整列表見 [skills.json](skills.json)。
 
 ## 目錄結構
 

@@ -27,29 +27,6 @@ jobs:
           fi
           echo "✅ Agent files are in sync"
 
-  check-readme-sync:
-    name: README skills table in sync
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Every SKILL.md name is listed in README
-        run: |
-          missing=()
-          while IFS= read -r skill_file; do
-            name=$(grep -m1 '^name:' "$skill_file" | sed 's/name: *//')
-            if [ -n "$name" ] && ! grep -q "$name" README.md; then
-              missing+=("$name (in $skill_file)")
-            fi
-          done < <(find skills -name "SKILL.md" ! -path "skills/_template/*")
-
-          if [ ${#missing[@]} -gt 0 ]; then
-            echo "❌ The following skills are missing from README.md:"
-            printf '  - %s\n' "${missing[@]}"
-            exit 1
-          fi
-          echo "✅ README is up to date"
-
   check-skills-json-sync:
     name: skills.json in sync
     runs-on: ubuntu-latest

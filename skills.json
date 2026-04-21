@@ -2,5 +2,12 @@
   "name": "Nigel-wei-zhe/skills",
   "description": "Personal Claude Code / Cursor / Gemini CLI skills library",
   "version": "1.0.0",
-  "skills": []
+  "skills": [
+    {
+      "name": "feynman-blog",
+      "description": "給一個網址、名詞或主題，以費曼學習法撰寫深入淺出的 blog 文章",
+      "category": "content",
+      "path": "skills/content/feynman-blog"
+    }
+  ]
 }

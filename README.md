@@ -16,7 +16,7 @@ npx skills add Nigel-wei-zhe/skills/dev/skill-name
 
 | Skill | 說明 | 類別 |
 |-------|------|------|
-| _(暫無)_ | | |
+| [feynman-blog](skills/content/feynman-blog/SKILL.md) | 給一個網址、名詞或主題，以費曼學習法撰寫深入淺出的 blog 文章 | `content` |
 
 ## 目錄結構
 
@@ -24,8 +24,8 @@ npx skills add Nigel-wei-zhe/skills/dev/skill-name
 skills/
 ├── README.md
 └── skills/
-    ├── .curated/     # 精選、穩定的 skills
-    ├── .experimental/ # 實驗性 skills
+    ├── curated/      # 精選、穩定的 skills
+    ├── experimental/ # 實驗性 skills
     ├── dev/          # 開發工具類
     ├── content/      # 內容創作類
     ├── ops/          # 維運自動化類

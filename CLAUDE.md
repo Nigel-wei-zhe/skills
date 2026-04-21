@@ -16,8 +16,8 @@ skills/
 ├── AGENTS.md / CLAUDE.md / GEMINI.md   ← 本檔（三份內容同步）
 ├── README.md                            ← 對外說明，含 Skills 列表
 └── skills/
-    ├── .curated/      精選、穩定
-    ├── .experimental/ 實驗性
+    ├── curated/       精選、穩定
+    ├── experimental/  實驗性
     ├── dev/           開發工具
     ├── content/       內容創作
     ├── ops/           維運自動化
@@ -81,8 +81,8 @@ description: 一句話觸發條件 — 何時使用、解決什麼問題
 ### 類別選擇
 | 類別 | 適用情境 |
 |------|---------|
-| `.curated` | 經過驗證、長期維護的核心 skills |
-| `.experimental` | 測試中，API 可能異動 |
+| `curated` | 經過驗證、長期維護的核心 skills |
+| `experimental` | 測試中，API 可能異動 |
 | `dev` | 程式開發流程（PR、review、debug） |
 | `content` | 文章撰寫、文件、部落格 |
 | `ops` | CI/CD、部署、監控 |

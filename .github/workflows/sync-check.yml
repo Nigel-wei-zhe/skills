@@ -1,0 +1,80 @@
+name: Sync Check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  check-agent-files-sync:
+    name: Agent files in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: AGENTS.md == CLAUDE.md == GEMINI.md
+        run: |
+          if ! diff -q CLAUDE.md AGENTS.md > /dev/null; then
+            echo "❌ AGENTS.md and CLAUDE.md are out of sync"
+            diff CLAUDE.md AGENTS.md
+            exit 1
+          fi
+          if ! diff -q CLAUDE.md GEMINI.md > /dev/null; then
+            echo "❌ GEMINI.md and CLAUDE.md are out of sync"
+            diff CLAUDE.md GEMINI.md
+            exit 1
+          fi
+          echo "✅ Agent files are in sync"
+
+  check-readme-sync:
+    name: README skills table in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Every SKILL.md name is listed in README
+        run: |
+          missing=()
+          while IFS= read -r skill_file; do
+            name=$(grep -m1 '^name:' "$skill_file" | sed 's/name: *//')
+            if [ -n "$name" ] && ! grep -q "$name" README.md; then
+              missing+=("$name (in $skill_file)")
+            fi
+          done < <(find skills -name "SKILL.md" ! -path "skills/_template/*")
+
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "❌ The following skills are missing from README.md:"
+            printf '  - %s\n' "${missing[@]}"
+            exit 1
+          fi
+          echo "✅ README is up to date"
+
+  check-skills-json-sync:
+    name: skills.json in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Every SKILL.md name is in skills.json
+        run: |
+          missing=()
+          while IFS= read -r skill_file; do
+            name=$(grep -m1 '^name:' "$skill_file" | sed 's/name: *//')
+            if [ -n "$name" ] && ! node -e "
+              const m = require('./skills.json');
+              process.exit(m.skills.some(s => s.name === '$name') ? 0 : 1);
+            " 2>/dev/null; then
+              missing+=("$name")
+            fi
+          done < <(find skills -name "SKILL.md" ! -path "skills/_template/*")
+
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "❌ Missing from skills.json:"
+            printf '  - %s\n' "${missing[@]}"
+            exit 1
+          fi
+          echo "✅ skills.json is up to date"
